@@ -1,0 +1,74 @@
+Maximal control value error:  0.0008755209490853236 m
+********************************** Control is 0.001m close to the solution found after 17 iterations ************************
+
+Maximal control value error:  0.0007941166275779281 m
+********************************** Control is 0.001m close to the solution found after 18 iterations ************************
+
+Subtract one off the number of iterations as the first one it counts is not an iteration (it's just initialisation)
+
+
+output from thetis
+
+thetis_list = [0.9999999999999997,
+ 0.7172698733279368,
+ 0.1183662731721002,
+ 0.022478047309570513,
+ 0.012192086635048408,
+ 0.0014562181647937245,
+ 0.0006998741101357224,
+ 8.980236840160717e-05,
+ 1.312183142971884e-05,
+ 5.200812546410147e-06,
+ 1.258257559017312e-06,
+ 5.460928737438716e-07,
+ 1.4024724769767967e-07,
+ 2.218028372763025e-08,
+ 8.476654700396967e-09,
+ 3.941186329502078e-09,
+ 2.6356941319648394e-09,
+ 1.7675678705693467e-09]
+ 
+ max_error_list
+ [1.0,
+ 0.8490791467163149,
+ 0.316289744451162,
+ 0.14395248065891075,
+ 0.10599431829231565,
+ 0.08617747634018709,
+ 0.0677186106341428,
+ 0.027801948907035384,
+ 0.010725965395262105,
+ 0.004621631363443972,
+ 0.003530001216585508,
+ 0.002696403398405295,
+ 0.0014359433815324951,
+ 0.0011617372334205237,
+ 0.0009795004987102132,
+ 0.0009249845508695065,
+ 0.0008756051743279269,
+ 0.0007941959412569016]
+ 
+ 
+### output from paper
+
+paper = [0.9999999999999754, 0.7190482813525099, 0.12437564799980795, 0.0236976800888805, 0.014569015273110351, 0.001580503042460079, 0.0007760438074308686, 0.00010266633356960057, 1.6280385200466562e-05, 6.1947708975695544e-06, 1.4822345622129578e-06, 6.28857004495023e-07, 1.7134062816734785e-07, 2.8018821236688087e-08, 1.4342026036521568e-08, 4.667089770983172e-09, 3.0973465774658614e-09, 1.7147193798711867e-09, 1.898872231455551e-09, 1.331501649097952e-09]
+
+
+from matplotlib.ticker import MaxNLocator, LogLocator, NullFormatter
+
+ax = plt.figure().gca()
+ax.semilogy(thetis_list, label = 'Thetis')
+
+ax.semilogy(paper, label = 'Funke et al. (2017)')
+ax.set_xlabel('Iteration')
+ax.set_ylabel('$J(\eta_{D})$')
+ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+locmaj = LogLocator(base=10.0, subs=(1.0, ), numticks=100)
+ax.yaxis.set_major_locator(locmaj)
+
+locmin = LogLocator(base=10.0, subs=np.arange(2, 10) * .1,
+                                      numticks=100)
+ax.yaxis.set_minor_locator(locmin)
+ax.yaxis.set_minor_formatter(NullFormatter())
+
+plt.show()

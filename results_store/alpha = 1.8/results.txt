@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Nov  2 09:03:21 2019
+
+@author: mc4117
+"""
+
+max_error_list = [1.0,
+ 0.8386201700531513,
+ 0.20526334142295855,
+ 0.09079015058409234,
+ 0.06819193077799962,
+ 0.037747218678692865,
+ 0.016166245058165704,
+ 0.0076910746690991225,
+ 0.004773346610284647,
+ 0.0028971590747537464,
+ 0.002225619666712213,
+ 0.0014905233589837235,
+ 0.001116582962400612,
+ 0.000735760022489566,
+ 0.0005504021438536271]
+
+
+Maximal control value error:  0.000735760022489566 m
+********************************** Control is 0.001m close to the solution found after 14 iterations ************************
+
+Maximal control value error:  0.0005504021438536271 m
+********************************** Control is 0.001m close to the solution found after 15 iterations ************************
+
+Subtract one off the number of iterations as the first one it counts is not an iteration (it's just initialisation)
